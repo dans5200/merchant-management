@@ -1,0 +1,11 @@
+<server class="org.jpos.q2.iso.QServer" logger="Q2" name="merchantChannel">
+    <attr name="port" type="java.lang.Integer">8000</attr>
+    <channel class="org.jpos.iso.channel.ASCIIChannel"
+             packager="org.jpos.iso.packager.GenericPackager"
+             type="server"
+             logger="Q2">
+        <property name="timeout" value="180000"/>
+        <property name="packager-config" value="packager/customePackager.xml" />
+    </channel>
+    <request-listener class="com.mpc.merchant.listener.MerchantListener"/>
+</server>
