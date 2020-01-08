@@ -16,6 +16,7 @@ public class ConnectionHelper {
 
     private Logger log = LogManager.getLogger(getClass());
 
+    private String select = "";
     private String tableName = "";
     private String where = "where ";
 
@@ -117,8 +118,9 @@ public class ConnectionHelper {
         return object;
     }
 
-    public ConnectionHelper select(String tableName){
-        this.tableName = "select * from "+tableName+" ";
+    public ConnectionHelper select(String select){
+        this.select = "select * from "+select+" ";
+        this.tableName = select;
         return this;
     }
 
@@ -129,8 +131,14 @@ public class ConnectionHelper {
 
     public ResultSet first(){
         ResultSet resultSet = null;
+        String sql = "";
         try{
-            String sql = this.tableName+this.where+"= limit 1";
+            if (where.equals("where ")){
+                sql = this.select+" limit 1";
+            }else{
+                sql = this.select+this.where+"= limit 1";
+            }
+
             sql = sql.replace(" and =","");
             log.debug("Query: "+sql);
 
@@ -144,8 +152,14 @@ public class ConnectionHelper {
 
     public ResultSet get(){
         ResultSet resultSet = null;
+        String sql = "";
         try{
-            String sql = this.tableName+this.where+"=";
+            if (where.equals("where ")){
+                sql = this.select;
+            }else{
+                sql = this.select+this.where+"=";
+            }
+
             sql = sql.replace(" and =","");
             log.debug("Query: "+sql);
 
@@ -154,5 +168,77 @@ public class ConnectionHelper {
             e.printStackTrace();
         }
         return resultSet;
+    }
+
+    public ResultSet paginate(String showPage){
+        ResultSet resultSet = null;
+        String sql = "";
+        try {
+            if (where.equals("where ")){
+                sql = this.select+" limit "+showPage+" offset 0";
+            }else{
+                sql = this.select+this.where+"="+" limit "+showPage+" offset 0";
+            }
+            sql = sql.replace(" and =","");
+            log.debug("Query: "+sql);
+
+            resultSet = this.executeQuery(sql);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return resultSet;
+    }
+
+    public ResultSet paginate(String showPage, String page){
+        ResultSet resultSet = null;
+        Integer offset = 0;
+        String sql = "";
+        try {
+            if (page.equals("1")){
+                offset = 0;
+            }else{
+                offset = (new Integer(showPage) * new Integer(page)) - 1;
+            }
+
+            if (where.equals("where ")){
+                sql = this.select+" limit "+showPage+" offset "+offset;
+            }else{
+                sql = this.select+this.where+"="+" limit "+showPage+" offset "+offset;
+            }
+
+            sql = sql.replace(" and =","");
+            log.debug("Query: "+sql);
+
+            resultSet = this.executeQuery(sql);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return resultSet;
+    }
+
+    public Integer count(){
+        ResultSet resultSet = null;
+        String sql = "";
+        Integer count = 0;
+        try {
+            if (where.equals("where ")){
+                sql = "select count(*) as count from "+this.tableName+" ";
+            }else{
+                sql = "select count(*) as count from "+this.tableName+" "+this.where;
+            }
+
+            sql = sql.replace(" and =","");
+            log.debug("Query: "+sql);
+
+            resultSet = this.executeQuery(sql);
+            resultSet.next();
+            count = new Integer(resultSet.getString("count"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return count;
     }
 }

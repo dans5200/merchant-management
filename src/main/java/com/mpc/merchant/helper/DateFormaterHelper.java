@@ -16,7 +16,7 @@ public class DateFormaterHelper {
         return timestamp;
     }
 
-    public  String timestampToDB(Timestamp timestamp){
+    public String timestampToDB(Timestamp timestamp){
         Date date = new Date();
         date.setTime(timestamp.getTime());
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
@@ -30,5 +30,18 @@ public class DateFormaterHelper {
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 
         return formattedDate;
+    }
+
+    public Timestamp stringToTimestamp(String data){
+        Timestamp timestamp = null;
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            Date parsedDate = dateFormat.parse(data);
+            timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return  timestamp;
     }
 }

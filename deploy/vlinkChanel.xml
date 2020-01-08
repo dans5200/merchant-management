@@ -1,4 +1,4 @@
-<channel-adaptor name='jpos-channel' class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2">
+<channel-adaptor name='vlink-channel' class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2">
     <channel class="org.jpos.iso.channel.ASCIIChannel"
              packager="org.jpos.iso.packager.GenericPackager"
              logger="Q2">
@@ -6,7 +6,7 @@
         <property name="port" value="8010" />
         <property name="packager-config" value="packager/customePackager.xml" />
     </channel>
-    <in>jpos-send</in>
-    <out>jpos-receive</out>
+    <in>vlink-send</in>
+    <out>vlink-receive</out>
     <reconnect-delay>10000</reconnect-delay>
 </channel-adaptor>

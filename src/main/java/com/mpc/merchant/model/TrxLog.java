@@ -73,6 +73,36 @@ public class TrxLog{
         this.createdAt = createdAt;
     }
 
+    public TrxLog(Integer id, String pan, String pcode, BigInteger trxAmount, String trxDateTime, String trace, String localTrxTime, String localTrxDate, String captureDate, String merchantType, String posem, String amountFee, String bit32, String qrisId, String retrievalReferenceNumber, String authIdResponse, String terminalId, String cardAcceptorId, String terminalLocation, String bit48, String curencyCode, String bit57, String fromAccountNo, String mpan, String status, String invoice, Timestamp createdAt) {
+        this.id = id;
+        this.pan = pan;
+        this.pcode = pcode;
+        this.trxAmount = trxAmount;
+        this.trxDateTime = trxDateTime;
+        this.trace = trace;
+        this.localTrxTime = localTrxTime;
+        this.localTrxDate = localTrxDate;
+        this.captureDate = captureDate;
+        this.merchantType = merchantType;
+        this.posem = posem;
+        this.amountFee = amountFee;
+        this.bit32 = bit32;
+        this.qrisId = qrisId;
+        this.retrievalReferenceNumber = retrievalReferenceNumber;
+        this.authIdResponse = authIdResponse;
+        this.terminalId = terminalId;
+        this.cardAcceptorId = cardAcceptorId;
+        this.terminalLocation = terminalLocation;
+        this.bit48 = bit48;
+        this.curencyCode = curencyCode;
+        this.bit57 = bit57;
+        this.fromAccountNo = fromAccountNo;
+        this.mpan = mpan;
+        this.status = status;
+        this.invoice = invoice;
+        this.createdAt = createdAt;
+    }
+
     public Integer getId() {
         return id;
     }
