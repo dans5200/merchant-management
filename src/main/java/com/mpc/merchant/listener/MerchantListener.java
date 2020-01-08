@@ -1,6 +1,7 @@
 package com.mpc.merchant.listener;
 
 import com.mpc.merchant.handler.PaymentHandler;
+import com.mpc.merchant.handler.RefundHendler;
 import com.mpc.merchant.handler.StatusCheckHandler;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -28,7 +29,8 @@ public class MerchantListener implements ISORequestListener {
                 StatusCheckHandler statusCheckHandler = new StatusCheckHandler();
                 statusCheckHandler.processIsomsg(source, m);
             }else if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("92")){
-
+                RefundHendler refundHendler = new RefundHendler();
+                refundHendler.processIsomsg(source, m);
             }
         }catch (Exception e){
             e.printStackTrace();

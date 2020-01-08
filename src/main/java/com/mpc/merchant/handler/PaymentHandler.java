@@ -17,7 +17,6 @@ import java.util.Calendar;
 @Component
 public class PaymentHandler {
     private Logger log = LogManager.getLogger(getClass());
-
     private ConnectionHelper connectionHelper = new ConnectionHelper();
 
     public void processIsomsg(ISOSource source, ISOMsg m){

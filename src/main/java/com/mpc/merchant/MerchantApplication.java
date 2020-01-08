@@ -17,4 +17,5 @@ public class MerchantApplication {
 		BasicConfigurator.configure();
 		SpringApplication.run(MerchantApplication.class, args);
 	}
+
 }
