@@ -5,10 +5,10 @@ import lombok.Data;
 import javax.persistence.Entity;
 
 public class TransactionResponse {
-    Integer status;
-    String error;
-    String message;
-    Object dataDetail;
+    private Integer status;
+    private String error;
+    private String message;
+    private Object dataDetail;
 
     public TransactionResponse() {
     }

@@ -44,4 +44,11 @@ public class DateFormaterHelper {
 
         return  timestamp;
     }
+
+    public String nowDateGetYear(){
+        Date date = new Date();
+        date.setTime(this.getNowTimestamp().getTime());
+        String formattedDate = new SimpleDateFormat("yyyy").format(date);
+        return formattedDate;
+    }
 }

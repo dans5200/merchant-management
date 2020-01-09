@@ -9,6 +9,10 @@ group = 'com.mpc'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+bootWar(){
+	archiveName 'merchant.war'
+}
+
 repositories {
 	mavenCentral()
 	maven { url "https://repo.maven.apache.org/maven2" }

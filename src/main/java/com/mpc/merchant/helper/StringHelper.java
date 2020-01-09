@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import java.lang.*;
 
 public class StringHelper {
-    public String StrConvertUC(String str){
+    public String strConvertUC(String str){
         Integer index = 0;
         do {
             index = str.indexOf("_");
@@ -17,7 +17,7 @@ public class StringHelper {
         return str;
     }
 
-    public String StrConvertCU(String str){
+    public String strConvertCU(String str){
         Integer countString = str.length();
         String _str = new String();
 
@@ -34,5 +34,13 @@ public class StringHelper {
         }
 
         return _str;
+    }
+
+    public String padLeft(String value, Integer length){
+        return String.format("%1$"+length+"s", value);
+    }
+
+    public String padRight(String value, Integer length){
+        return  String.format("%1$-"+length+"s", value);
     }
 }

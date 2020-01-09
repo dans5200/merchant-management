@@ -1,6 +1,6 @@
 <mux class="org.jpos.q2.iso.QMUX" logger="Q2" name="jposMux">
-    <in>jpos-receive</in>
-    <out>jpos-send</out>
-    <ready>jpos-Channel.ready</ready>
+    <in>vlink-receive</in>
+    <out>vlink-send</out>
+    <ready>vlink-Channel.ready</ready>
 </mux>
 

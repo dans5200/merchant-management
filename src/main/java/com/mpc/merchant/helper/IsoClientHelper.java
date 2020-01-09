@@ -2,9 +2,12 @@ package com.mpc.merchant.helper;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jpos.iso.ISODate;
 import org.jpos.iso.ISOMsg;
 import org.jpos.q2.iso.QMUX;
 import org.jpos.util.NameRegistrar;
+
+import java.util.Date;
 
 public class IsoClientHelper {
     private Logger log = LogManager.getLogger(getClass());
@@ -22,9 +25,15 @@ public class IsoClientHelper {
     public ISOMsg sendRequest(ISOMsg isoMsg){
         ISOMsg isoMsgResponse = null;
         try{
-            log.info("Vlink Request: "+ new String(isoMsg.pack()));
+
+            isoMsg.set(7, ISODate.getDateTime(new Date()));
+            isoMsg.set(11, String.valueOf(System.currentTimeMillis() % 1000000));
+            isoMsg.set(12, ISODate.getTime(new Date()));
+            isoMsg.set(13, ISODate.getDate(new Date()));
+            isoMsg.set(17, ISODate.getDate(new Date()));
+
             isoMsgResponse = qmux.request(isoMsg, new Long(applicationProperties.getPropertis("vlink.timeout")) );
-            log.info("Vlink Response: "+ new String(isoMsgResponse.pack()));
+            log.info("Response from Vlink: "+new String(isoMsgResponse.pack()));
         }catch (Exception e){
             e.printStackTrace();
         }

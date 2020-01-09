@@ -146,4 +146,16 @@ public class TrxService {
         }
         return transactionResponse;
     }
+
+    public TransactionResponse findListTrx(String searchValue){
+        TransactionResponse transactionResponse = null;
+        String maxPageNumber = applicationProperties.getPropertis("number.of.show.data");
+        try {
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return transactionResponse;
+    }
 }

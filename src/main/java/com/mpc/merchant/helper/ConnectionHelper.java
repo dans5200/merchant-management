@@ -86,12 +86,12 @@ public class ConnectionHelper {
             StringHelper stringHelper = new StringHelper();
             ObjectMapper objectMapper = new ObjectMapper();
             Map<String, Object> map = objectMapper.convertValue(object, Map.class);
-            String sql = "insert into "+ stringHelper.StrConvertCU(object.getClass().getSimpleName());
+            String sql = "insert into "+ stringHelper.strConvertCU(object.getClass().getSimpleName());
             String field = "(";
             String values = " values(";
 
             for (Map.Entry<String, Object> mapObj : map.entrySet()){
-                field += stringHelper.StrConvertCU(mapObj.getKey())+",";
+                field += stringHelper.strConvertCU(mapObj.getKey())+",";
 
                 if (mapObj.getValue() instanceof String) {
                     values += "'" + mapObj.getValue() + "',";
@@ -124,8 +124,21 @@ public class ConnectionHelper {
         return this;
     }
 
-    public ConnectionHelper where(String field, String value){
-        this.where += field+"='"+value+"' and ";
+    public ConnectionHelper where(String field, Object value){
+        if (value instanceof String){
+            this.where += field+"='"+value+"' and ";
+        }else{
+            this.where += field+"="+value+" and ";
+        }
+        return this;
+    }
+
+    public ConnectionHelper where(String field, String operator, Object value){
+        if (value instanceof String){
+            this.where += field+operator+"'"+value+"' and ";
+        }else{
+            this.where += field+operator+value+" and ";
+        }
         return this;
     }
 
@@ -198,7 +211,7 @@ public class ConnectionHelper {
             if (page.equals("1")){
                 offset = 0;
             }else{
-                offset = (new Integer(showPage) * new Integer(page)) - 1;
+                offset = (new Integer(showPage) * (new Integer(page) - 1) );
             }
 
             if (where.equals("where ")){
@@ -226,7 +239,7 @@ public class ConnectionHelper {
             if (where.equals("where ")){
                 sql = "select count(*) as count from "+this.tableName+" ";
             }else{
-                sql = "select count(*) as count from "+this.tableName+" "+this.where;
+                sql = "select count(*) as count from "+this.tableName+" "+this.where+"=";
             }
 
             sql = sql.replace(" and =","");

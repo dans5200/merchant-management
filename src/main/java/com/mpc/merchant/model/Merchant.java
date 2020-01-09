@@ -9,16 +9,17 @@ import javax.persistence.Id;
 public class Merchant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    String countryCode;
-    String merchantName;
-    String merchantCity;
-    String postalCode;
-    String globallyUniqueId;
-    String mpan;
-    String merchantId;
-    String criteria;
+    private String countryCode;
+    private String merchantName;
+    private String merchantCity;
+    private String postalCode;
+    private String globallyUniqueId;
+    private String mpan;
+    private String rekening;
+    private String merchantId;
+    private String criteria;
 
     public Integer getId() {
         return id;
@@ -76,6 +77,14 @@ public class Merchant {
         this.mpan = mpan;
     }
 
+    public String getRekening() {
+        return rekening;
+    }
+
+    public void setRekening(String rekening) {
+        this.rekening = rekening;
+    }
+
     public String getMerchantId() {
         return merchantId;
     }
@@ -102,6 +111,7 @@ public class Merchant {
                 ", postalCode='" + postalCode + '\'' +
                 ", globallyUniqueId='" + globallyUniqueId + '\'' +
                 ", mpan='" + mpan + '\'' +
+                ", rekening='" + rekening + '\'' +
                 ", merchantId='" + merchantId + '\'' +
                 ", criteria='" + criteria + '\'' +
                 '}';
