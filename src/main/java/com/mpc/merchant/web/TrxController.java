@@ -30,8 +30,8 @@ public class TrxController {
         return trxService.getAllTrx(page);
     }
 
-    @PostMapping(value = "/list-trx/find/{page}")
-    public TransactionResponse findListTrx(@RequestBody Map<String, Object> request){
-        return trxService.findListTrx(request.get("findValue").toString());
+    @PostMapping(value = "/list-trx/find")
+    public TransactionResponse findListTrx(@RequestBody Map<String, Object> findValue){
+        return trxService.findListTrx(findValue);
     }
 }

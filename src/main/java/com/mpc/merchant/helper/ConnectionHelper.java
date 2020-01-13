@@ -39,7 +39,7 @@ public class ConnectionHelper {
         return connection;
     }
 
-    public ResultSet executeQuery(String sql){
+    private ResultSet executeQuery(String sql){
         ResultSet resultSet = null;
         try {
             Statement statement = (Statement) connection.createStatement();
@@ -52,16 +52,17 @@ public class ConnectionHelper {
         return resultSet;
     }
 
-    public ResultSet executeQuery(String sql, List<String> params) {
+    private ResultSet executeQuery(String sql, List<String> params){
         ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);
             Integer i = 1;
             for (String param : params) {
-                statement.setObject(i, param);
+                preparedStatement.setObject(i, param);
                 i++;
             }
-            statement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,11 +70,28 @@ public class ConnectionHelper {
         return resultSet;
     }
 
-    public Integer executeUpdate(String sql){
+    private Integer executeUpdate(String sql){
         Integer status = null;
         try {
             Statement statement = (Statement) connection.createStatement();
             status = statement.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
+    private Integer executeUpdate(String sql, List<String> params){
+        Integer status = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            Integer i = 1;
+            for (String param : params) {
+                statement.setObject(i, param);
+                i++;
+            }
+            status = statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,6 +157,26 @@ public class ConnectionHelper {
         }else{
             this.where += field+operator+value+" and ";
         }
+        return this;
+    }
+
+    public ConnectionHelper findBy(Map<String, Object> findValue){
+        StringHelper stringHelper = new StringHelper();
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map<String, Object> map = objectMapper.convertValue(findValue, Map.class);
+            where += "(";
+            for (Map.Entry<String, Object> mapObj : map.entrySet()){
+                where += stringHelper.strConvertCU(mapObj.getKey()) +" like '%"+mapObj.getValue()+"%' or ";
+            }
+            where += ")";
+
+            where = where.replace("or )",") and ");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return this;
     }
 

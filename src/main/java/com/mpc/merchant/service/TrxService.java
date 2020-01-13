@@ -101,11 +101,9 @@ public class TrxService {
             while (paginate.next()){
                 trxLogs.add(
                         new TrxLog(
-                                //new Integer(paginate.getString("id")),
                                 paginate.getInt("id"),
                                 paginate.getString("pan"),
                                 paginate.getString("pcode"),
-                                //new BigInteger(paginate.getString("trx_amount")),
                                 paginate.getBigDecimal("trx_amount").toBigInteger(),
                                 paginate.getString("trx_date_time"),
                                 paginate.getString("trace"),
@@ -147,13 +145,53 @@ public class TrxService {
         return transactionResponse;
     }
 
-    public TransactionResponse findListTrx(String searchValue){
+    public TransactionResponse findListTrx(Map<String, Object> searchValue){
         TransactionResponse transactionResponse = null;
-        String maxPageNumber = applicationProperties.getPropertis("number.of.show.data");
         try {
+            List<TrxLog> trxLogs = new ArrayList<>();
+            ResultSet paginate = new ConnectionHelper()
+                    .select("trx_log")
+                    .findBy(searchValue)
+                    .get();
 
+            while (paginate.next()){
+                trxLogs.add(
+                        new TrxLog(
+                                paginate.getInt("id"),
+                                paginate.getString("pan"),
+                                paginate.getString("pcode"),
+                                paginate.getBigDecimal("trx_amount").toBigInteger(),
+                                paginate.getString("trx_date_time"),
+                                paginate.getString("trace"),
+                                paginate.getString("local_trx_time"),
+                                paginate.getString("local_trx_date"),
+                                paginate.getString("capture_date"),
+                                paginate.getString("merchant_type"),
+                                paginate.getString("posem"),
+                                paginate.getString("amount_fee"),
+                                paginate.getString("bit32"),
+                                paginate.getString("qris_id"),
+                                paginate.getString("retrieval_reference_number"),
+                                paginate.getString("auth_id_response"),
+                                paginate.getString("terminal_id"),
+                                paginate.getString("card_acceptor_id"),
+                                paginate.getString("terminal_location"),
+                                paginate.getString("bit48"),
+                                paginate.getString("curency_code"),
+                                paginate.getString("bit57"),
+                                paginate.getString("from_account_no"),
+                                paginate.getString("mpan"),
+                                paginate.getString("status"),
+                                paginate.getString("invoice"),
+                                new DateFormaterHelper().stringToTimestamp(paginate.getString("created_at"))
+                        )
+                );
+            }
+
+            transactionResponse = new TransactionResponse(200,"","Success",trxLogs);
         }catch (Exception e){
             e.printStackTrace();
+            transactionResponse = new TransactionResponse(400,e.getMessage(),"Bad Request", new Object());
         }
 
         return transactionResponse;
