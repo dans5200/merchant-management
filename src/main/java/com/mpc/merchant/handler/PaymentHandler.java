@@ -41,7 +41,7 @@ public class PaymentHandler {
                     isoMsgVlink.set(41, new StringHelper().padRight( isoMsg.getString(41).trim(), 8 ));
                     isoMsgVlink.unset(48);
                     isoMsgVlink.unset(57);
-                    isoMsgVlink.set(62, new DateFormaterHelper().nowDateGetYear()+"       600100    0");
+                    isoMsgVlink.set(62, new DateFormaterHelper().nowDateGetYear()+"       627452    0");
 
                     try{
                         new IsoClientHelper().sendRequest(isoMsgVlink);

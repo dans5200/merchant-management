@@ -18,6 +18,7 @@ public class ConnectionHelper {
 
     private String select = "";
     private String tableName = "";
+    private List<Object> param = null;
     private String where = "where ";
 
     public ConnectionHelper() {

@@ -20,18 +20,29 @@ public class MerchantListener implements ISORequestListener {
     public boolean process(ISOSource source, ISOMsg m) {
         try {
             String pcode = m.getString(3);
+            log.info("MTI: "+m.getMTI());
             log.info("pcode: "+pcode);
 
-            if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("91")){
-                PaymentHandler paymentHandler = new PaymentHandler();
-                paymentHandler.processIsomsg(source, m);
-            }else if (pcode.substring(0,2).equals("33") && pcode.substring(4).equals("91")){
-                StatusCheckHandler statusCheckHandler = new StatusCheckHandler();
-                statusCheckHandler.processIsomsg(source, m);
-            }else if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("92")){
-                RefundHendler refundHendler = new RefundHendler();
-                refundHendler.processIsomsg(source, m);
+            if (pcode != null){
+                if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("91")){
+                    log.info("========Payment Credit=========");
+                    PaymentHandler paymentHandler = new PaymentHandler();
+                    paymentHandler.processIsomsg(source, m);
+                }else if (pcode.substring(0,2).equals("33") && pcode.substring(4).equals("91")){
+                    log.info("========Check Status=========");
+                    StatusCheckHandler statusCheckHandler = new StatusCheckHandler();
+                    statusCheckHandler.processIsomsg(source, m);
+                }else if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("92")){
+                    log.info("========Refund=========");
+                    RefundHendler refundHendler = new RefundHendler();
+                    refundHendler.processIsomsg(source, m);
+                }
+            }else if(m.getMTI().equals("0800")){
+                ISOMsg isoMsg = (ISOMsg) m.clone();
+                isoMsg.setMTI("0810");
+                source.send(isoMsg);
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }

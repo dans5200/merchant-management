@@ -20,6 +20,7 @@ public class Merchant {
     private String rekening;
     private String merchantId;
     private String criteria;
+    private String mobileId;
 
     public Integer getId() {
         return id;
@@ -101,6 +102,14 @@ public class Merchant {
         this.criteria = criteria;
     }
 
+    public String getMobileId() {
+        return mobileId;
+    }
+
+    public void setMobileId(String mobileId) {
+        this.mobileId = mobileId;
+    }
+
     @Override
     public String toString() {
         return "Merchant{" +
@@ -114,6 +123,7 @@ public class Merchant {
                 ", rekening='" + rekening + '\'' +
                 ", merchantId='" + merchantId + '\'' +
                 ", criteria='" + criteria + '\'' +
+                ", mobileId='" + mobileId + '\'' +
                 '}';
     }
 }

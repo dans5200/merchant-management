@@ -35,7 +35,7 @@ public class MerchantService {
         try{
             merchantResponse = merchanRepository.findById(idMerchant);
         }catch (Exception e){
-            return new TransactionResponse(400,e.getMessage(),"Bad Request", new Object());
+            return new TransactionResponse(400,e.getMessage(),"Bad Request", new ArrayList<>());
         }
         return new TransactionResponse(200,"","Success",merchantResponse);
     }
@@ -74,18 +74,18 @@ public class MerchantService {
                 ISOMsg responseISOMsg = new IsoClientHelper().sendRequest(isoMsg);
 
                 if (responseISOMsg == null){
-                    return new TransactionResponse(400, "RTO","Could not get any response", new Object());
+                    return new TransactionResponse(400, "RTO","Could not get any response", new ArrayList<>());
                 }else{
                     responseMerchant = merchanRepository.save(merchant);
                 }
             }catch (Exception e){
                 e.printStackTrace();
-                return new TransactionResponse(400, e.getMessage(),"Bad Request", new Object());
+                return new TransactionResponse(400, e.getMessage(),"Bad Request", new ArrayList<>());
             }
             transactionResponse = new TransactionResponse(200,"","Success",responseMerchant);
         }catch (Exception e){
             e.printStackTrace();
-            return new TransactionResponse(400, e.getMessage(),"Bad Request", new Object());
+            return new TransactionResponse(400, e.getMessage(),"Bad Request", new ArrayList<>());
         }
         return transactionResponse;
     }
@@ -94,7 +94,7 @@ public class MerchantService {
         try {
             merchanRepository.deleteById(idMerchant);
         }catch (Exception e){
-            return new TransactionResponse(400,e.getMessage(),"Bad Request", new Object());
+            return new TransactionResponse(400,e.getMessage(),"Bad Request", new ArrayList<>());
         }
         return new TransactionResponse(200, "","Success",new ArrayList<>());
     }

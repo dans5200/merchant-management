@@ -1,10 +1,13 @@
 package com.mpc.merchant.model;
 
+import com.mpc.merchant.helper.DateFormaterHelper;
+import com.mpc.merchant.helper.StringHelper;
 import lombok.Data;
 
 import javax.persistence.Entity;
 
 public class TransactionResponse {
+    private String timestamp;
     private Integer status;
     private String error;
     private String message;
@@ -18,6 +21,7 @@ public class TransactionResponse {
         this.error = error;
         this.message = message;
         this.dataDetail = dataDetail;
+        this.timestamp = new DateFormaterHelper().timeStampToResponse();
     }
 
     public Integer getStatus() {
@@ -50,5 +54,13 @@ public class TransactionResponse {
 
     public void setDataDetail(Object dataDetail) {
         this.dataDetail = dataDetail;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

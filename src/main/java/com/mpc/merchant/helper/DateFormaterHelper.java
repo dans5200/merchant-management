@@ -32,6 +32,14 @@ public class DateFormaterHelper {
         return formattedDate;
     }
 
+    public String timeStampToResponse(){
+        Date date = new Date();
+        date.setTime(this.getNowTimestamp().getTime());
+        String formattedDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(date);
+
+        return formattedDate;
+    }
+
     public Timestamp stringToTimestamp(String data){
         Timestamp timestamp = null;
         try{

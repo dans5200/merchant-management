@@ -147,8 +147,25 @@ public class TrxService {
 
     public TransactionResponse findListTrx(Map<String, Object> searchValue){
         TransactionResponse transactionResponse = null;
+        Integer count = 0;
         try {
             List<TrxLog> trxLogs = new ArrayList<>();
+
+            try {
+                count = new ConnectionHelper()
+                        .select("merchant")
+                        .where("mobile_id",searchValue.get("mobile_id").toString())
+                        .count();
+            }catch (NullPointerException e){
+                return new TransactionResponse(400,"Mobile ID not found.","Bad Request", new ArrayList<>());
+            }
+
+            if (count == 0){
+                return new TransactionResponse(400,"Mobile ID not found.","Bad Request", new ArrayList<>());
+            }
+
+            searchValue.remove("mobile_id");
+
             ResultSet paginate = new ConnectionHelper()
                     .select("trx_log")
                     .findBy(searchValue)
@@ -191,7 +208,7 @@ public class TrxService {
             transactionResponse = new TransactionResponse(200,"","Success",trxLogs);
         }catch (Exception e){
             e.printStackTrace();
-            transactionResponse = new TransactionResponse(400,e.getMessage(),"Bad Request", new Object());
+            transactionResponse = new TransactionResponse(400,e.getMessage(),"Bad Request", new ArrayList<>());
         }
 
         return transactionResponse;
