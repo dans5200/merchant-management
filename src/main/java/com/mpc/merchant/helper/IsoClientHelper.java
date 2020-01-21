@@ -18,7 +18,7 @@ public class IsoClientHelper {
         try{
             qmux = (QMUX) NameRegistrar.get("mux.jposMux");
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
@@ -27,15 +27,20 @@ public class IsoClientHelper {
         try{
 
             isoMsg.set(7, ISODate.getDateTime(new Date()));
-            isoMsg.set(11, String.valueOf(System.currentTimeMillis() % 1000000));
             isoMsg.set(12, ISODate.getTime(new Date()));
             isoMsg.set(13, ISODate.getDate(new Date()));
             isoMsg.set(17, ISODate.getDate(new Date()));
 
             isoMsgResponse = qmux.request(isoMsg, new Long(applicationProperties.getPropertis("vlink.timeout")) );
-            log.info("Response from Vlink: "+new String(isoMsgResponse.pack()));
+            try {
+                log.info("Response from Vlink: "+new String(isoMsgResponse.pack()));
+            }catch (NullPointerException e){
+                isoMsgResponse = isoMsg;
+                log.debug("Response from VLINK: Time Out");
+                isoMsg.set(39,"08");
+            }
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(e);
         }
 
         return isoMsgResponse;

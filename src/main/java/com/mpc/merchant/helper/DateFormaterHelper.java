@@ -24,6 +24,22 @@ public class DateFormaterHelper {
         return formattedDate;
     }
 
+    public String stringDBToFormat(String date, String format){
+        String newString = null;
+        try{
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(simpleDateFormat.parse(date));
+
+            simpleDateFormat = new SimpleDateFormat(format);
+            newString = simpleDateFormat.format(calendar.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return  newString;
+    }
+
     public String timestampToDB(){
         Date date = new Date();
         date.setTime(this.getNowTimestamp().getTime());
@@ -58,5 +74,34 @@ public class DateFormaterHelper {
         date.setTime(this.getNowTimestamp().getTime());
         String formattedDate = new SimpleDateFormat("yyyy").format(date);
         return formattedDate;
+    }
+
+    public String increaseDate(String nowDate, Integer increaseValue){
+        String newDate = null;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(simpleDateFormat.parse(nowDate));
+            calendar.add(Calendar.DATE, increaseValue);
+            newDate = simpleDateFormat.format(calendar.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return newDate;
+    }
+
+    public String increaseDate(Integer increaseValue){
+        String newDate = null;
+        try {
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, increaseValue);
+            newDate = simpleDateFormat.format(calendar.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return newDate;
     }
 }

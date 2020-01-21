@@ -15,51 +15,62 @@ import java.sql.ResultSet;
 public class StatusCheckHandler {
     private Logger log = LogManager.getLogger(getClass());
 
-    private ConnectionHelper connectionHelper = new ConnectionHelper();
-
     public void processIsomsg(ISOSource source, ISOMsg m){
         ISOMsg isoMsg = null;
         IsoHelper isoHelper = new IsoHelper();
-        TrxLog dataTrxLog = null;
         isoMsg = (ISOMsg) m.clone();
         ResultSet resultSet = null;
-        String status = "success";
+        String status = "failed";
+        isoMsg.set(39,"99");
 
         try {
-            String data123 = isoMsg.getString(11)+ isoMsg.getString(13);
             String mti = isoMsg.getMTI();
 
             log.debug("String ISO: "+new String(m.pack()));
             log.info("Response MTI: "+isoHelper.setMTI(mti));
 
             isoMsg.setMTI(isoHelper.setMTI(mti));
-            isoMsg.set(39,"00");
+            isoMsg.set(39,"99");
 
             try{
                 resultSet = new ConnectionHelper()
-                            .select("trx_log")
-                            .where("merchant_type",isoMsg.getString(18))
-                            .where("card_acceptor_id", isoMsg.getString(42))
+                            .table("trx_log")
+                            .where("pcode","like","%01__91%")
+                            .where("mpan",isoMsg.getString(103))
+                            .where("invoice", isoMsg.getString(123))
+                            .where("retrieval_reference_number", isoMsg.getString(37))
                             .first();
 
                 if (resultSet.next() != false){
                     isoMsg.set(123, resultSet.getString("invoice"));
+                    isoMsg.set(39, resultSet.getString("response_code"));
                     log.info("Set data invoice: "+resultSet.getString("invoice"));
                 }else{
                     //data transaksi tidak ditemukan
-                    isoMsg.set(39, "03");
+                    isoMsg.set(39, "12");
                     status = "failed";
                 }
             }catch (Exception e){
+                log.error(e);
                 e.printStackTrace();
                 isoMsg.set(39, "99");
                 status = "failed";
             }
 
-            dataTrxLog = new TrxLog(
+            source.send(isoMsg);
+            this.sendToDB(isoMsg, status);
+        }catch (Exception e){
+            log.error(e);
+            e.printStackTrace();
+        }
+    }
+
+    private void sendToDB(ISOMsg isoMsg, String status){
+        try{
+            TrxLog dataTrxLog = new TrxLog(
                     isoMsg.getString(2),
                     isoMsg.getString(3),
-                    new BigInteger(isoMsg.getString(4)),
+                    new BigInteger(isoMsg.getString(4).substring(0,10)),
                     isoMsg.getString(7),
                     isoMsg.getString(11),
                     isoMsg.getString(12),
@@ -82,19 +93,13 @@ public class StatusCheckHandler {
                     isoMsg.getString(103),
                     status,
                     isoMsg.getString(123),
+                    isoMsg.getString(39),
                     new DateFormaterHelper().getNowTimestamp()
             );
 
-            source.send(isoMsg);
+            new ConnectionHelper().save(dataTrxLog);
         }catch (Exception e){
-            e.printStackTrace();
-            dataTrxLog.setStatus("failed");
-        }
-
-        try {
-            log.info(dataTrxLog);
-            connectionHelper.save(dataTrxLog);
-        }catch (Exception e){
+            log.error(e);
             e.printStackTrace();
         }
     }

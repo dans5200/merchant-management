@@ -39,12 +39,13 @@ public class TrxLog{
     private String mpan;
     private String status;
     private String invoice;
+    private String responseCode;
     private Timestamp createdAt;
 
     public TrxLog() {
     }
 
-    public TrxLog(String pan, String pcode, BigInteger trxAmount, String trxDateTime, String trace, String localTrxTime, String localTrxDate, String captureDate, String merchantType, String posem, String amountFee, String bit32, String qrisId, String retrievalReferenceNumber, String authIdResponse, String terminalId, String cardAcceptorId, String terminalLocation, String bit48, String curencyCode, String bit57, String fromAccountNo, String mpan, String status, String invoice, Timestamp createdAt) {
+    public TrxLog(String pan, String pcode, BigInteger trxAmount, String trxDateTime, String trace, String localTrxTime, String localTrxDate, String captureDate, String merchantType, String posem, String amountFee, String bit32, String qrisId, String retrievalReferenceNumber, String authIdResponse, String terminalId, String cardAcceptorId, String terminalLocation, String bit48, String curencyCode, String bit57, String fromAccountNo, String mpan, String status, String invoice, String responseCode, Timestamp createdAt) {
         this.pan = pan;
         this.pcode = pcode;
         this.trxAmount = trxAmount;
@@ -70,10 +71,11 @@ public class TrxLog{
         this.mpan = mpan;
         this.status = status;
         this.invoice = invoice;
+        this.responseCode = responseCode;
         this.createdAt = createdAt;
     }
 
-    public TrxLog(Integer id, String pan, String pcode, BigInteger trxAmount, String trxDateTime, String trace, String localTrxTime, String localTrxDate, String captureDate, String merchantType, String posem, String amountFee, String bit32, String qrisId, String retrievalReferenceNumber, String authIdResponse, String terminalId, String cardAcceptorId, String terminalLocation, String bit48, String curencyCode, String bit57, String fromAccountNo, String mpan, String status, String invoice, Timestamp createdAt) {
+    public TrxLog(Integer id, String pan, String pcode, BigInteger trxAmount, String trxDateTime, String trace, String localTrxTime, String localTrxDate, String captureDate, String merchantType, String posem, String amountFee, String bit32, String qrisId, String retrievalReferenceNumber, String authIdResponse, String terminalId, String cardAcceptorId, String terminalLocation, String bit48, String curencyCode, String bit57, String fromAccountNo, String mpan, String status, String invoice, String responseCode, Timestamp createdAt) {
         this.id = id;
         this.pan = pan;
         this.pcode = pcode;
@@ -100,6 +102,7 @@ public class TrxLog{
         this.mpan = mpan;
         this.status = status;
         this.invoice = invoice;
+        this.responseCode = responseCode;
         this.createdAt = createdAt;
     }
 
@@ -315,6 +318,14 @@ public class TrxLog{
         this.invoice = invoice;
     }
 
+    public String getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
+    }
+
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
@@ -348,6 +359,7 @@ public class TrxLog{
                 ", mpan='" + mpan + '\'' +
                 ", status='" + status + '\'' +
                 ", invoice='" + invoice + '\'' +
+                ", responseCode='" + responseCode + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }

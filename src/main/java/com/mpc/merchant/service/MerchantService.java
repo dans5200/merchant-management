@@ -14,10 +14,7 @@ import org.jpos.iso.ISOMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class MerchantService {
@@ -30,12 +27,16 @@ public class MerchantService {
         return new TransactionResponse(200,"","Success",merchantList);
     }
 
-    public TransactionResponse getMerchantById(Integer idMerchant){
+    public TransactionResponse getMerchantById(Map<String, Object> value){
         Optional<Merchant> merchantResponse = null;
         try{
-            merchantResponse = merchanRepository.findById(idMerchant);
+            if(value.get("id") != null){
+                merchantResponse = merchanRepository.findById((Integer) value.get("id"));
+            }else{
+                return new TransactionResponse(404,"No ID found.","Not Found", new ArrayList<>());
+            }
         }catch (Exception e){
-            return new TransactionResponse(400,e.getMessage(),"Bad Request", new ArrayList<>());
+            return new TransactionResponse(401,e.getMessage(),"Unauthorized", new ArrayList<>());
         }
         return new TransactionResponse(200,"","Success",merchantResponse);
     }
@@ -59,42 +60,46 @@ public class MerchantService {
                 isoMsg.set(12, ISODate.getTime(new Date()));
                 isoMsg.set(13, ISODate.getDate(new Date()));
                 isoMsg.set(17, ISODate.getDate(new Date()));
-                isoMsg.set(18, "5812");
+                isoMsg.set(18, merchant.getMerchantType());
                 isoMsg.set(32, "93600111");
                 isoMsg.set(33,"600100");
                 isoMsg.set(37,"000000000013");
-                isoMsg.set(41, new StringHelper().padRight(merchant.getMerchantId(), 8));
+                isoMsg.set(41, new StringHelper().padRight(merchant.getMerchantId().substring(0, 8), 8));
                 isoMsg.set(42, "000088080000020");
                 isoMsg.set(43, bit43 );
                 isoMsg.set(49, "360");
-                isoMsg.set(62, new DateFormaterHelper().nowDateGetYear()+"       600100    0");
-                isoMsg.set(102, new StringHelper().padLeft(merchant.getRekening(),19));
-                isoMsg.set(103, new StringHelper().padLeft(merchant.getMpan(), 19));
+                isoMsg.set(62, new DateFormaterHelper().nowDateGetYear()+ new StringHelper().padLeft(isoMsg.getString(33), 13) +"    0");
+                isoMsg.set(102, merchant.getRekening());
+                isoMsg.set(103, merchant.getMpan());
 
                 ISOMsg responseISOMsg = new IsoClientHelper().sendRequest(isoMsg);
 
-                if (responseISOMsg == null){
-                    return new TransactionResponse(400, "RTO","Could not get any response", new ArrayList<>());
-                }else{
+                if (responseISOMsg.getString(39).equals("00")){
                     responseMerchant = merchanRepository.save(merchant);
+                }else{
+                    return new TransactionResponse(401, "RC "+responseISOMsg.getString(39)+" from Vlink","Unauthorized", new ArrayList<>());
                 }
             }catch (Exception e){
                 e.printStackTrace();
-                return new TransactionResponse(400, e.getMessage(),"Bad Request", new ArrayList<>());
+                return new TransactionResponse(401, e.getMessage(),"Unauthorized", new ArrayList<>());
             }
             transactionResponse = new TransactionResponse(200,"","Success",responseMerchant);
         }catch (Exception e){
             e.printStackTrace();
-            return new TransactionResponse(400, e.getMessage(),"Bad Request", new ArrayList<>());
+            return new TransactionResponse(401, e.getMessage(),"Unauthorized", new ArrayList<>());
         }
         return transactionResponse;
     }
 
-    public  TransactionResponse removeMerchant(Integer idMerchant){
+    public  TransactionResponse removeMerchant(Map<String, Object> value){
         try {
-            merchanRepository.deleteById(idMerchant);
+            if(value.get("id") != null){
+                merchanRepository.deleteById((Integer) value.get("id"));
+            }else{
+                return new TransactionResponse(404,"No ID found.","Not Found", new ArrayList<>());
+            }
         }catch (Exception e){
-            return new TransactionResponse(400,e.getMessage(),"Bad Request", new ArrayList<>());
+            return new TransactionResponse(401,e.getMessage(),"Unauthorized", new ArrayList<>());
         }
         return new TransactionResponse(200, "","Success",new ArrayList<>());
     }

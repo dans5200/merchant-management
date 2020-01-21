@@ -14,59 +14,85 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 @Component
 public class PaymentHandler {
     private Logger log = LogManager.getLogger(getClass());
+    private String data123 = null;
 
     public void processIsomsg(ISOSource source, ISOMsg m){
         IsoHelper isoHelper = new IsoHelper();
         ISOMsg isoMsg = (ISOMsg) m.clone();
         ISOMsg isoMsgVlink = (ISOMsg) m.clone();
+        isoMsg.set(39, "99");
+        String status = "failed";
+        String rekeningMerchant = null;
+        Random random = new Random();
 
         try{
-            Integer countMerchant = new ConnectionHelper()
-                                  .select("merchant")
-                                  .where("mpan",isoMsg.getString(103))
-                                  .where("merchant_id", isoMsg.getString(41).trim())
-                                  .count();
+            Integer countMerchant = 0;
+            ResultSet resultSetMerchant = new ConnectionHelper()
+                                          .table("merchant")
+                                          .where("mpan",isoMsg.getString(103))
+                                          .where("merchant_id", isoMsg.getString(42).trim())
+                                          .first();
+
+            while (resultSetMerchant.next()){
+                rekeningMerchant = resultSetMerchant.getString("rekening");
+                countMerchant++;
+            }
 
             if (countMerchant > 0){
                 try {
                     //send to vlink
                     isoMsgVlink.setMTI("0200");
                     isoMsgVlink.set(2,"6274520000000000");
-                    isoMsgVlink.set(28, isoMsg.getString(28).replace("C","").replace("D",""));
+                    isoMsgVlink.set(18,"6019");
+
+                    if (isoMsg.getString(28) != null) {
+//                        isoMsgVlink.set(28, isoMsg.getString(28).replace("C", "").replace("D", ""));
+                        isoMsgVlink.unset(28);
+                    }
+
                     isoMsgVlink.unset(38);
                     isoMsgVlink.set(41, new StringHelper().padRight( isoMsg.getString(41).trim(), 8 ));
                     isoMsgVlink.unset(48);
                     isoMsgVlink.unset(57);
-                    isoMsgVlink.set(62, new DateFormaterHelper().nowDateGetYear()+"       627452    0");
+                    isoMsgVlink.set(62, new DateFormaterHelper().nowDateGetYear()+ new StringHelper().padLeft( isoMsg.getString(33),13 ) + "    0");
+                    isoMsgVlink.set(103, rekeningMerchant);
 
                     try{
-                        new IsoClientHelper().sendRequest(isoMsgVlink);
-                        isoMsg.set(39, "00");
+                        log.info("Send message to Vlink");
+                        ISOMsg responseVlink = new IsoClientHelper().sendRequest(isoMsgVlink);
+                        isoMsg.set(39, responseVlink.getString(39));
+                        data123 = isoMsg.getString(11)+ String.format("%04d", random.nextInt(10000));
                         if (this.sendResponseToIST(source, isoMsg)){
-                            log.info("Save to DB");
-                            this.sendToDB(isoMsg);
+                            status = "success";
                         }
                     }catch (Exception e){
+                        log.error(e);
                         e.printStackTrace();
                         isoMsg.set(39,"99");
                         this.sendResponseToIST(source, isoMsg);
                     }
                 }catch (Exception e){
+                    log.error(e);
                     e.printStackTrace();
                     isoMsg.set(39,"99");
                     this.sendResponseToIST(source, isoMsg);
                 }
             }else{
+                log.info("Merchant not found");
                 isoMsg.set(39,"14");
                 this.sendResponseToIST(source, isoMsg);
             }
+
+            log.info("Save to DB");
+            this.sendToDB(isoMsg, status);
         }catch (Exception e){
+            log.error(e);
             e.printStackTrace();
-            isoMsg.set(39, "99");
             this.sendResponseToIST(source, isoMsg);
         }
     }
@@ -74,7 +100,8 @@ public class PaymentHandler {
     private Boolean sendResponseToIST(ISOSource source, ISOMsg isoMsg){
         Boolean status = false;
         try{
-            String data123 = isoMsg.getString(11)+ ISODate.getDateTime(new Date());
+            Random random = new Random();
+
             IsoHelper isoHelper = new IsoHelper();
             String mti = isoMsg.getMTI();
 
@@ -82,25 +109,29 @@ public class PaymentHandler {
             log.info("Response MTI: "+isoHelper.setMTI(mti));
 
             isoMsg.setMTI(isoHelper.setMTI(mti));
-            isoMsg.set(123,data123);
+
+            if (isoMsg.getString(39).equals("00")){
+                isoMsg.set(123,data123+data123);
+            }
 
             source.send(isoMsg);
             status = true;
         }catch (Exception e){
+            log.error(e);
             e.printStackTrace();
         }
 
         return status;
     }
 
-    private void sendToDB(ISOMsg isoMsg){
+    private void sendToDB(ISOMsg isoMsg, String status){
         try {
-            String data123 = isoMsg.getString(11)+ ISODate.getDateTime(new Date());isoMsg.getString(13);
+            isoMsg.getString(13);
 
            TrxLog dataTrxLog = new TrxLog(
                     isoMsg.getString(2),
                     isoMsg.getString(3),
-                    new BigInteger(isoMsg.getString(4)),
+                    new BigInteger(isoMsg.getString(4).substring(0,10)),
                     isoMsg.getString(7),
                     isoMsg.getString(11),
                     isoMsg.getString(12),
@@ -121,13 +152,15 @@ public class PaymentHandler {
                     isoMsg.getString(57),
                     isoMsg.getString(102),
                     isoMsg.getString(103),
-                    "success",
-                    data123,
+                    status,
+                   data123+data123,
+                    isoMsg.getString(39),
                     new DateFormaterHelper().getNowTimestamp()
             );
 
            new ConnectionHelper().save(dataTrxLog);
         }catch (Exception e){
+            log.error(e);
             e.printStackTrace();
         }
     }

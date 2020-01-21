@@ -10,10 +10,10 @@ public class Merchant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String countryCode;
     private String merchantName;
     private String merchantCity;
+    private String merchantType;
     private String postalCode;
     private String globallyUniqueId;
     private String mpan;
@@ -48,6 +48,14 @@ public class Merchant {
 
     public String getMerchantCity() {
         return merchantCity;
+    }
+
+    public String getMerchantType() {
+        return merchantType;
+    }
+
+    public void setMerchantType(String merchantType) {
+        this.merchantType = merchantType;
     }
 
     public void setMerchantCity(String merchantCity) {
@@ -117,6 +125,7 @@ public class Merchant {
                 ", countryCode='" + countryCode + '\'' +
                 ", merchantName='" + merchantName + '\'' +
                 ", merchantCity='" + merchantCity + '\'' +
+                ", merchantType='" + merchantType + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", globallyUniqueId='" + globallyUniqueId + '\'' +
                 ", mpan='" + mpan + '\'' +

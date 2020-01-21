@@ -23,7 +23,7 @@ public class MerchantListener implements ISORequestListener {
             log.info("MTI: "+m.getMTI());
             log.info("pcode: "+pcode);
 
-            if (pcode != null){
+            if (pcode != null && (m.getMTI().equals("0200") || m.getMTI().equals("0210") )){
                 if (pcode.substring(0,2).equals("01") && pcode.substring(4).equals("91")){
                     log.info("========Payment Credit=========");
                     PaymentHandler paymentHandler = new PaymentHandler();

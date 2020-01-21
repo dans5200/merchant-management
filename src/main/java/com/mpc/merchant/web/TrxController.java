@@ -1,6 +1,7 @@
 package com.mpc.merchant.web;
 
 import com.mpc.merchant.helper.IsoClientHelper;
+import com.mpc.merchant.helper.QRReaderHelper;
 import com.mpc.merchant.model.TransactionResponse;
 import com.mpc.merchant.service.TrxService;
 import org.apache.log4j.LogManager;
@@ -36,7 +37,9 @@ public class TrxController {
     public TransactionResponse findListTrx(@RequestBody Map<String, Object> findValue){
         log.info("========Find List Trx by value =========");
         log.info(findValue);
-        return trxService.findListTrx(findValue);
+        TransactionResponse transactionResponse = trxService.findListTrx(findValue);
+        log.info(transactionResponse);
+        return transactionResponse;
     }
 
     @PostMapping(value = "/echo-vlink")
@@ -52,5 +55,11 @@ public class TrxController {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @PostMapping(value = "/read-token")
+    public Map<String, String> readQR(@RequestBody Map<String, Object> param){
+        log.info(param);
+        return new QRReaderHelper(param.get("qrData").toString()).getResult();
     }
 }

@@ -4,8 +4,10 @@
              logger="Q2">
         <property name="host" value="localhost" />
         <property name="port" value="8846" />
+        <property name="timeout" value="180000"/>
+        <property name="keep-alive" value="true" />
     </channel>
     <in>vlink-send</in>
     <out>vlink-receive</out>
-    <reconnect-delay>10000</reconnect-delay>
+    <reconnect-delay>30000</reconnect-delay>
 </channel-adaptor>

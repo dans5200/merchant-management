@@ -63,4 +63,15 @@ public class TransactionResponse {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionResponse{" +
+                "timestamp='" + timestamp + '\'' +
+                ", status=" + status +
+                ", error='" + error + '\'' +
+                ", message='" + message + '\'' +
+                ", dataDetail=" + dataDetail +
+                '}';
+    }
 }
