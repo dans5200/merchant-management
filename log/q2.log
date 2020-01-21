@@ -25134,3 +25134,668 @@ q9ulRPEqH9NR79619lNKVUkE206dVlXo7xHmJS1QZy5v/GT66xBxyDVfTduPFXk=
     Unable to connect
   </connect>
 </log>
+<?xml version="1.0" encoding="UTF-8"?>
+<logger class="org.jpos.util.DailyLogListener">
+<log realm="merchantChannel.server" at="2020-01-21T10:05:46.508">
+  <iso-server>
+    listening on port 8000
+  </iso-server>
+</log>
+<log realm="channel" at="2020-01-21T10:05:48.525" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:06:20.541" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:06:52.558" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:07:24.577" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:07:56.595" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:08:28.615" lifespan="2018ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:09:00.630" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:09:32.647" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:10:04.656" lifespan="2006ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:10:36.673" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:11:08.691" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:11:40.721" lifespan="2028ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:12:12.727" lifespan="2005ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:12:44.742" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:13:16.759" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:13:48.776" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:14:20.792" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:14:52.810" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:15:24.825" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:15:56.843" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:16:28.860" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:17:00.877" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:17:32.895" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:18:04.912" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:18:36.918" lifespan="2004ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:19:08.934" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:19:40.950" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:20:12.966" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:20:44.981" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:21:16.986" lifespan="2004ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:21:49.004" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:22:21.022" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:22:53.038" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:23:25.057" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:23:57.062" lifespan="2003ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:24:29.068" lifespan="2004ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:25:01.085" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:25:33.101" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:26:05.109" lifespan="2006ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:26:37.125" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:27:09.142" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:27:41.150" lifespan="2006ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:28:13.167" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:28:45.185" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:29:17.202" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:29:49.218" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:30:21.236" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:30:53.251" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:31:25.255" lifespan="2003ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:31:57.273" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:32:29.288" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:33:01.306" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:33:33.321" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:34:05.336" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:34:37.352" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:35:09.366" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:35:41.382" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:36:13.398" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:36:45.416" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:37:17.431" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:37:49.447" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:38:21.463" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:38:53.479" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:39:25.495" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:39:57.510" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:40:29.527" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:41:01.537" lifespan="2008ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:41:33.559" lifespan="2020ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:42:05.574" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:42:37.590" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:43:09.607" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:43:41.612" lifespan="2003ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:44:13.630" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:44:45.646" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:45:17.663" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:45:49.677" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:46:21.694" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:46:53.712" lifespan="2017ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:47:25.729" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:47:57.745" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:48:29.761" lifespan="2013ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:49:01.777" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:49:33.784" lifespan="2005ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:50:05.801" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:50:37.820" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:51:09.825" lifespan="2004ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:51:41.843" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:52:13.859" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:52:45.875" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:53:17.880" lifespan="2003ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:53:49.894" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:54:21.911" lifespan="2016ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:54:53.926" lifespan="2014ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>
+<log realm="channel" at="2020-01-21T10:55:25.941" lifespan="2015ms">
+  <connect>
+    Try 0 localhost:8846
+      Connection refused: connect
+    Unable to connect
+  </connect>
+</log>

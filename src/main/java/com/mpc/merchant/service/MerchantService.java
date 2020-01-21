@@ -64,7 +64,7 @@ public class MerchantService {
                 isoMsg.set(32, "93600111");
                 isoMsg.set(33,"600100");
                 isoMsg.set(37,"000000000013");
-                isoMsg.set(41, new StringHelper().padRight(merchant.getMerchantId().substring(0, 8), 8));
+                isoMsg.set(41, merchant.getBranch());
                 isoMsg.set(42, "000088080000020");
                 isoMsg.set(43, bit43 );
                 isoMsg.set(49, "360");

@@ -28,6 +28,7 @@ public class PaymentHandler {
         isoMsg.set(39, "99");
         String status = "failed";
         String rekeningMerchant = null;
+        String branch = null;
         Random random = new Random();
 
         try{
@@ -40,6 +41,7 @@ public class PaymentHandler {
 
             while (resultSetMerchant.next()){
                 rekeningMerchant = resultSetMerchant.getString("rekening");
+                branch = resultSetMerchant.getString("branch");
                 countMerchant++;
             }
 
@@ -56,7 +58,7 @@ public class PaymentHandler {
                     }
 
                     isoMsgVlink.unset(38);
-                    isoMsgVlink.set(41, new StringHelper().padRight( isoMsg.getString(41).trim(), 8 ));
+                    isoMsgVlink.set(41, branch);
                     isoMsgVlink.unset(48);
                     isoMsgVlink.unset(57);
                     isoMsgVlink.set(62, new DateFormaterHelper().nowDateGetYear()+ new StringHelper().padLeft( isoMsg.getString(33),13 ) + "    0");

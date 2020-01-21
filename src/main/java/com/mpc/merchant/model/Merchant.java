@@ -20,6 +20,7 @@ public class Merchant {
     private String rekening;
     private String merchantId;
     private String criteria;
+    private String branch;
     private String mobileId;
 
     public Integer getId() {
@@ -110,6 +111,14 @@ public class Merchant {
         this.criteria = criteria;
     }
 
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
     public String getMobileId() {
         return mobileId;
     }
@@ -132,6 +141,7 @@ public class Merchant {
                 ", rekening='" + rekening + '\'' +
                 ", merchantId='" + merchantId + '\'' +
                 ", criteria='" + criteria + '\'' +
+                ", branch='" + branch + '\'' +
                 ", mobileId='" + mobileId + '\'' +
                 '}';
     }
